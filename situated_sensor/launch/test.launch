@@ -1,0 +1,4 @@
+<launch>
+	<node name="openrave" pkg="situated_sensor" type="test.py" />
+	<node name="range_publisher" pkg="situated_sensor" type="pub.py" />
+</launch>

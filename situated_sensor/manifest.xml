@@ -1,0 +1,17 @@
+<package>
+  <description brief="situated_sensor">
+
+     situated_sensor
+
+  </description>
+  <author>andre</author>
+  <license>BSD</license>
+  <review status="unreviewed" notes=""/>
+  <url>http://ros.org/wiki/situated_sensor</url>
+  <depend package="roscpp"/>
+  <depend package="rospy"/>
+  <depend package="sensor_msgs"/>
+  <depend package="std_msgs"/>
+</package>
+
+
