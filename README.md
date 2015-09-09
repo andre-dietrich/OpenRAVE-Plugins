@@ -12,7 +12,9 @@ of this OpenRAVE plugin. The front sensors have a typical infrared shape, while
 side and back sensors have a typical utrasonic beam. Using meshes it is easy to
 extend this plugin and to imitate various different distance sensors.
 
-
+<iframe width="425" height="344" frameborder="0"
+ src="https://www.youtube.com/embed/Ts7Acf70D8U">
+</iframe>
 
 ## 2. filter
 
@@ -22,17 +24,25 @@ to cut through the scenario and generate online different occupancy grid maps
 for different heights. This plugin was intended to be extended and used as a
 base for further filters.
 
+<iframe width="425" height="344" frameborder="0"
+ src="https://www.youtube.com/embed/DTX2pXk5Q2Q">
+</iframe>
+
 ### 2.1 quadtrees
 
-![quadtrees](https://gitlab.com/OvGU-ESS/OpenRAVE-Plugins/raw/a55854372573b7f2e8173744b8fea91b8a77892a/misc/filter_quadtree.png)
+![screenshot1](misc/filter_quadtree.png)
 
 ### 2.2 sensorcoverage
 
-![quadtrees](misc/filter_sensorcoverage.png)
+![screenshot2](misc/filter_sensorcoverage.png)
 
 ### 2.3 sensordistance
 
+![screenshot3](misc/filter_sensordistance.png)
+
 ### 2.4 occupancycubes
+
+![screenshot4](misc/filter_occupancycubes.png)
 
 ### 2.5 and more ...
 
@@ -43,18 +53,23 @@ Sometimes it is required to keep track of an object and its trajectory during a
 simulation. This simple plugin was intended to do so. Just attach this element
 like an sensor to any robot, link, or object and visualize historical positions.
 
+<iframe width="425" height="344" frameborder="0"
+ src="https://www.youtube.com/embed/f_TOxP75buk">
+</iframe>
+
 ## 4. situated_sensor
 
 This plugin allows to measure within the virtual world as well as in the real
 world, by connecting a sensor to a ROS topic.
 
+![screenshot4](misc/situated_sensor.png)
 
 ## Installation
 
 Simply download the project via:
 
 ```bash
-git clone
+git clone https://gitlab.com/OvGU-ESS/OpenRAVE-Plugins.git
 ```
 go into every directory, for example
 
