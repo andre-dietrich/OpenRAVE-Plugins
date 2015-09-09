@@ -1,0 +1,8 @@
+<sensor type="BaseFlashLidar3D">
+	<maxrange>10</maxrange>
+	<scantime>1</scantime>
+	<KK>20 20 20 20</KK>
+	<width>40</width>
+	<height>40</height>
+	<color>0 0.5 0.5 0.5</color>
+</sensor>

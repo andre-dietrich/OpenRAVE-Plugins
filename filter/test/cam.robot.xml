@@ -1,0 +1,18 @@
+<Robot>
+	<KinBody name="cam">
+		<Body type="static">
+			<Geom type="sphere">
+				<radius>0.05</radius>
+				<diffuseColor>0.2 .2 .2</diffuseColor>
+			</Geom>
+    	</Body>
+	</KinBody>
+		
+	<AttachedSensor name="cam_sensor" file="cam.sensor.xml">
+		<link>cam</link>
+		<translation>0 0 -0.051</translation>
+	    <rotationaxis>0 1 0 180</rotationaxis>
+	    <sensor name="mysensor" file="cam.sensor.xml">
+ 		</sensor>
+	</AttachedSensor>
+</Robot>
