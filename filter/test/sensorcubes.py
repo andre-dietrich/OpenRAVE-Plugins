@@ -17,12 +17,11 @@ env=Environment()
 xml = os.path.dirname(__file__)
 if xml == "": xml = "."
 env.Load(xml+"/myscene.env.xml")
+env.SetViewer('qtcoin')
 
 for sensor in env.GetSensors():
     sensor.Configure(Sensor.ConfigureCommand.PowerOn)
     sensor.Configure(Sensor.ConfigureCommand.RenderDataOn)
-
-env.SetViewer('qtcoin')
 
 Filter = RaveCreateModule(env,'sensorcubemap')
 Filter.SendCommand('SetTranslation -2.5 -2.5 0.5')

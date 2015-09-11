@@ -38,6 +38,9 @@ public:
 					iterSensor != sensors.end();
 					iterSensor++)
 			{
+				if(!(*iterSensor)->Configure(OpenRAVE::SensorBase::CC_PowerCheck, true))
+					continue;
+
 				std::stringstream ssout;
 				std::stringstream ssin; ssin << "collidingbodies";
 
@@ -79,82 +82,91 @@ public:
 
 		EnvironmentBasePtr env = GetEnv()->CloneSelf(0b10001);
 
-
-
 		env->GetSensors(sensors);
 		{
 			for(std::vector<SensorBasePtr>::iterator iterSensor = sensors.begin();
 				iterSensor != sensors.end();
 				iterSensor++)
 			{
-				std::stringstream ssout;
-				std::stringstream ssin; ssin << "collidingbodies";
 
-				KinBodyPtr gridPtr = RaveCreateKinBody(env);
-				gridPtr->SetName("XXX");
+				if(!(*iterSensor)->Configure(OpenRAVE::SensorBase::CC_PowerCheck, true))
+					continue;
 
-				unsigned int iGridElement=0;
-				for(std::vector<KinBody::Link::TRIMESH>::iterator triElement = meshGrid.begin();
-						triElement != meshGrid.end();
-						triElement++)
+				try
 				{
-					gridPtr->InitFromTrimesh(*triElement, false);
-
-					gridPtr->SetTransform(m_tGridTransformation);
-					env->Add(gridPtr, true);
-
-					//(*iterSensor)->SimulationStep(1);
-					env->StepSimulation(1);
 
 					std::stringstream ssout;
 					std::stringstream ssin; ssin << "collidingbodies";
 
-					if( (*iterSensor)->SendCommand(ssout, ssin) ) {
+					KinBodyPtr gridPtr = RaveCreateKinBody(env);
+					gridPtr->SetName("XXX");
 
-						std::map<std::string,unsigned int> map;
+					unsigned int iGridElement=0;
+					for(std::vector<KinBody::Link::TRIMESH>::iterator triElement = meshGrid.begin();
+							triElement != meshGrid.end();
+							triElement++)
+					{
+						gridPtr->InitFromTrimesh(*triElement, false);
 
-						while(ssout >> sID){
-							if(sID != "0"){
-								if(map.find(sID) == map.end()){
-									map[sID] = 0;
+						gridPtr->SetTransform(m_tGridTransformation);
+						env->Add(gridPtr, true);
+
+						//(*iterSensor)->SimulationStep(1);
+						env->StepSimulation(1);
+
+						std::stringstream ssout;
+						std::stringstream ssin; ssin << "collidingbodies";
+
+						if( (*iterSensor)->SendCommand(ssout, ssin) ) {
+
+							std::map<std::string,unsigned int> map;
+
+							while(ssout >> sID){
+								if(sID != "0"){
+									if(map.find(sID) == map.end()){
+										map[sID] = 0;
+									}
+									map[sID]++;
 								}
-								map[sID]++;
 							}
+
+							for(std::map<std::string,unsigned int>::const_iterator it = map.begin(); it != map.end(); it++)
+							{
+								std::string key = it->first;
+								unsigned int value = it->second;
+
+								if(env->GetBodyFromEnvironmentId( std::atoi( key.c_str()) )->GetName() == "XXX"){
+									this->occupancyGrid[ iGridElement ] += value;
+									break;
+								}
+							}
+
+							/*
+							for (std::set<std::string>::iterator itSet = set.begin(); itSet != set.end(); ++itSet)
+							{
+								if(env->GetBodyFromEnvironmentId( std::atoi( itSet->c_str()) )->GetName() == "XXX"){
+
+									// search for appeareance of id ..
+									this->occupancyGrid[ iGridElement ] += std::count (hits.begin(), hits.end(), *itSet);
+									break;
+
+								}
+							}
+							*/
 						}
 
-						for(std::map<std::string,unsigned int>::const_iterator it = map.begin(); it != map.end(); it++)
-						{
-							std::string key = it->first;
-							unsigned int value = it->second;
+						std::cout << ".";
 
-							if(env->GetBodyFromEnvironmentId( std::atoi( key.c_str()) )->GetName() == "XXX"){
-								this->occupancyGrid[ iGridElement ] += value;
-								break;
-							}
+						if(iGridElement % 80 == 0){
+							std::cout << " " << iGridElement << "\n";
 						}
 
-						/*
-						for (std::set<std::string>::iterator itSet = set.begin(); itSet != set.end(); ++itSet)
-						{
-							if(env->GetBodyFromEnvironmentId( std::atoi( itSet->c_str()) )->GetName() == "XXX"){
-
-								// search for appeareance of id ..
-								this->occupancyGrid[ iGridElement ] += std::count (hits.begin(), hits.end(), *itSet);
-								break;
-
-							}
-						}
-						*/
+						env->Remove(gridPtr);
+						iGridElement ++;
 					}
-
-					std::cout << ".";
-
-					if(iGridElement % 80 == 0){
-						std::cout << " " << iGridElement << "\n";
-					}
-
-					env->Remove(gridPtr);
-					iGridElement ++;
+				}
+				catch(...){
+					std::cerr << "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX";
 				}
 			}
 

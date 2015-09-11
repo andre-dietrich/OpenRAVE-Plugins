@@ -41,6 +41,9 @@ public:
 				iterSensor != sensors.end();
 				iterSensor++)
 			{
+				if(!(*iterSensor)->Configure(OpenRAVE::SensorBase::CC_PowerCheck, true))
+					continue;
+
 				std::stringstream ssout;
 				std::stringstream ssin; ssin << "collidingbodies";
 

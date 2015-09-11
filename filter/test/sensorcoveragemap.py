@@ -21,6 +21,10 @@ for sensor in env.GetSensors():
 
 env.SetViewer('qtcoin')
 
+sensor = env.GetSensors()[0]
+sensor.Configure(Sensor.ConfigureCommand.PowerOff)
+sensor.Configure(Sensor.ConfigureCommand.RenderDataOff)
+
 Filter = RaveCreateModule(env,'sensorgridmap')
 Filter.SendCommand('SetTranslation -2.5 -2.5 0.1')
 Filter.SendCommand('SetSize 25 25 0.2')
@@ -36,9 +40,9 @@ Filter.SendCommand('Render')
 map = Filter.SendCommand('Scan')
 
 matrix = numpy.fromstring(map, dtype=int, count=-1, sep=' ').reshape(25,25).astype(numpy.float)
-    
+
 print matrix
-        
+
 plt.imshow(matrix.astype(numpy.float), cmap=plt.cm.hot)
 plt.draw()
 
