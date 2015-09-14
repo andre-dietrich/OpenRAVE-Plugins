@@ -12,9 +12,7 @@ of this OpenRAVE plugin. The front sensors have a typical infrared shape, while
 side and back sensors have a typical utrasonic beam. Using meshes it is easy to
 extend this plugin and to imitate various different distance sensors.
 
-<iframe width="425" height="344" frameborder="0"
- src="https://www.youtube.com/embed/Ts7Acf70D8U">
-</iframe>
+[![YouTube](http://img.youtube.com/vi/Ts7Acf70D8U/0.jpg)](http://www.youtube.com/watch?v=Ts7Acf70D8U "watch on YouTube")
 
 ## 2. filter
 
@@ -24,9 +22,7 @@ to cut through the scenario and generate online different occupancy grid maps
 for different heights. This plugin was intended to be extended and used as a
 base for further filters.
 
-<iframe width="425" height="344" frameborder="0"
- src="https://www.youtube.com/embed/DTX2pXk5Q2Q">
-</iframe>
+[![YouTube](http://img.youtube.com/vi/DTX2pXk5Q2Q/0.jpg)](http://www.youtube.com/watch?v=DTX2pXk5Q2Q "watch on YouTube")
 
 ### 2.1 quadtrees
 
@@ -53,9 +49,8 @@ Sometimes it is required to keep track of an object and its trajectory during a
 simulation. This simple plugin was intended to do so. Just attach this element
 like an sensor to any robot, link, or object and visualize historical positions.
 
-<iframe width="425" height="344" frameborder="0"
- src="https://www.youtube.com/embed/f_TOxP75buk">
-</iframe>
+[![YouTube](http://img.youtube.com/vi/f_TOxP75buk/0.jpg)](http://www.youtube.com/watch?v=f_TOxP75buk "watch on YouTube")
+
 
 ## 4. situated_sensor
 
