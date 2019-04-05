@@ -64,7 +64,7 @@ world, by connecting a sensor to a ROS topic.
 Simply download the project via:
 
 ```bash
-git clone https://gitlab.com/OvGU-ESS/OpenRAVE-Plugins.git
+git clone https://github.com/andre-dietrich/OpenRAVE-Plugins.git
 ```
 go into every directory, for example
 
@@ -79,13 +79,3 @@ cmake .
 sudo make install
 ```
 every project contains a test folder with a python script.
-
-## Contact
-
-If you have further comments or remarks, go to our website and write a mail:
-
-http://eos.cs.ovgu.de/crew/dietrich
-
-or visit our blog at:
-
-http://www.aizac.info
